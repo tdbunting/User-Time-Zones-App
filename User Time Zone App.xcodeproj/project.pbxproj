@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E79E65E41B7D44AC00CFF460 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E65E31B7D44AC00CFF460 /* AppDelegate.swift */; };
-		E79E65E61B7D44AC00CFF460 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E65E51B7D44AC00CFF460 /* ViewController.swift */; };
+		E79E65E61B7D44AC00CFF460 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E65E51B7D44AC00CFF460 /* MainViewController.swift */; };
 		E79E65E91B7D44AC00CFF460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E79E65E71B7D44AC00CFF460 /* Main.storyboard */; };
 		E79E65EB1B7D44AC00CFF460 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E79E65EA1B7D44AC00CFF460 /* Images.xcassets */; };
 		E79E65EE1B7D44AC00CFF460 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79E65EC1B7D44AC00CFF460 /* LaunchScreen.xib */; };
@@ -25,7 +25,6 @@
 		E79E66181B7D4C4600CFF460 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E79E66171B7D4C4600CFF460 /* libsqlite3.dylib */; };
 		E79E661A1B7D4D0A00CFF460 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79E66191B7D4D0A00CFF460 /* Parse.framework */; };
 		E79E661D1B7D4D7300CFF460 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79E661C1B7D4D7300CFF460 /* Bolts.framework */; };
-		E79E661F1B7D4E2100CFF460 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79E661E1B7D4E2100CFF460 /* ParseUI.framework */; };
 		E79E66251B7D588800CFF460 /* CustomLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66241B7D588800CFF460 /* CustomLogInViewController.swift */; };
 		E79E66271B7D589A00CFF460 /* CustomSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66261B7D589A00CFF460 /* CustomSignUpViewController.swift */; };
 /* End PBXBuildFile section */
@@ -44,7 +43,7 @@
 		E79E65DE1B7D44AC00CFF460 /* User Time Zone App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "User Time Zone App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E79E65E21B7D44AC00CFF460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E79E65E31B7D44AC00CFF460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E79E65E51B7D44AC00CFF460 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E79E65E51B7D44AC00CFF460 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E79E65E81B7D44AC00CFF460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E79E65EA1B7D44AC00CFF460 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E79E65ED1B7D44AC00CFF460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -63,7 +62,6 @@
 		E79E66171B7D4C4600CFF460 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E79E66191B7D4D0A00CFF460 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		E79E661C1B7D4D7300CFF460 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		E79E661E1B7D4E2100CFF460 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		E79E66241B7D588800CFF460 /* CustomLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLogInViewController.swift; sourceTree = "<group>"; };
 		E79E66261B7D589A00CFF460 /* CustomSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,7 +83,6 @@
 				E79E660A1B7D4C0D00CFF460 /* CoreGraphics.framework in Frameworks */,
 				E79E66081B7D4C0500CFF460 /* CFNetwork.framework in Frameworks */,
 				E79E66061B7D4BFE00CFF460 /* AudioToolbox.framework in Frameworks */,
-				E79E661F1B7D4E2100CFF460 /* ParseUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				E79E65E31B7D44AC00CFF460 /* AppDelegate.swift */,
-				E79E65E51B7D44AC00CFF460 /* ViewController.swift */,
+				E79E65E51B7D44AC00CFF460 /* MainViewController.swift */,
 				E79E65E71B7D44AC00CFF460 /* Main.storyboard */,
 				E79E66241B7D588800CFF460 /* CustomLogInViewController.swift */,
 				E79E66261B7D589A00CFF460 /* CustomSignUpViewController.swift */,
@@ -161,7 +158,6 @@
 		E79E661B1B7D4D1700CFF460 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E79E661E1B7D4E2100CFF460 /* ParseUI.framework */,
 				E79E661C1B7D4D7300CFF460 /* Bolts.framework */,
 				E79E66171B7D4C4600CFF460 /* libsqlite3.dylib */,
 				E79E66151B7D4C3C00CFF460 /* libz.dylib */,
@@ -279,7 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E79E66251B7D588800CFF460 /* CustomLogInViewController.swift in Sources */,
-				E79E65E61B7D44AC00CFF460 /* ViewController.swift in Sources */,
+				E79E65E61B7D44AC00CFF460 /* MainViewController.swift in Sources */,
 				E79E66271B7D589A00CFF460 /* CustomSignUpViewController.swift in Sources */,
 				E79E65E41B7D44AC00CFF460 /* AppDelegate.swift in Sources */,
 			);
