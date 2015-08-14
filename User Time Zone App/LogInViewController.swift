@@ -1,6 +1,6 @@
 //
 //  CustomLogInViewController.swift
-//  User Time Zone App
+//  User Time Zone AppCustomSignUpViewController
 //
 //  Created by Tyler Bunting on 8/13/15.
 //  Copyright (c) 2015 Tyler Bunting. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class CustomLoginViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     @IBOutlet weak var usernameField: UITextField!
     

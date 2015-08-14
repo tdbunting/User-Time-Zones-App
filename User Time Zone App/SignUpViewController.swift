@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class CustomSignUpViewController: UIViewController {
+class SignUpViewController: UIViewController {
 
     @IBOutlet weak var firstNameField: UITextField!
     
@@ -123,7 +123,7 @@ class CustomSignUpViewController: UIViewController {
                     var alert = UIAlertView(title: "Success", message: "Signed Up", delegate: self, cancelButtonTitle: "OK")
                     alert.show() */
                     
-                    self.performSegueWithIdentifier("main", sender: self)
+                    self.performSegueWithIdentifier("custom", sender: self)
                     
 
                 }

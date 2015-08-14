@@ -25,8 +25,9 @@
 		E79E66181B7D4C4600CFF460 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E79E66171B7D4C4600CFF460 /* libsqlite3.dylib */; };
 		E79E661A1B7D4D0A00CFF460 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79E66191B7D4D0A00CFF460 /* Parse.framework */; };
 		E79E661D1B7D4D7300CFF460 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79E661C1B7D4D7300CFF460 /* Bolts.framework */; };
-		E79E66251B7D588800CFF460 /* CustomLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66241B7D588800CFF460 /* CustomLogInViewController.swift */; };
-		E79E66271B7D589A00CFF460 /* CustomSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66261B7D589A00CFF460 /* CustomSignUpViewController.swift */; };
+		E79E66251B7D588800CFF460 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66241B7D588800CFF460 /* LogInViewController.swift */; };
+		E79E66271B7D589A00CFF460 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66261B7D589A00CFF460 /* SignUpViewController.swift */; };
+		E79E66291B7E16B100CFF460 /* TimeZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66281B7E16B100CFF460 /* TimeZones.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +63,10 @@
 		E79E66171B7D4C4600CFF460 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E79E66191B7D4D0A00CFF460 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		E79E661C1B7D4D7300CFF460 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		E79E66241B7D588800CFF460 /* CustomLogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLogInViewController.swift; sourceTree = "<group>"; };
-		E79E66261B7D589A00CFF460 /* CustomSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSignUpViewController.swift; sourceTree = "<group>"; };
+		E79E66241B7D588800CFF460 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		E79E66261B7D589A00CFF460 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E79E66281B7E16B100CFF460 /* TimeZones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZones.swift; sourceTree = "<group>"; };
+		E79E662A1B7E19EE00CFF460 /* ParseTimeZoneTests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ParseTimeZoneTests.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,11 +121,13 @@
 		E79E65E01B7D44AC00CFF460 /* User Time Zone App */ = {
 			isa = PBXGroup;
 			children = (
+				E79E662A1B7E19EE00CFF460 /* ParseTimeZoneTests.playground */,
 				E79E65E31B7D44AC00CFF460 /* AppDelegate.swift */,
 				E79E65E51B7D44AC00CFF460 /* MainViewController.swift */,
 				E79E65E71B7D44AC00CFF460 /* Main.storyboard */,
-				E79E66241B7D588800CFF460 /* CustomLogInViewController.swift */,
-				E79E66261B7D589A00CFF460 /* CustomSignUpViewController.swift */,
+				E79E66281B7E16B100CFF460 /* TimeZones.swift */,
+				E79E66241B7D588800CFF460 /* LogInViewController.swift */,
+				E79E66261B7D589A00CFF460 /* SignUpViewController.swift */,
 				E79E65EA1B7D44AC00CFF460 /* Images.xcassets */,
 				E79E65EC1B7D44AC00CFF460 /* LaunchScreen.xib */,
 				E79E65E11B7D44AC00CFF460 /* Supporting Files */,
@@ -274,10 +279,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E79E66251B7D588800CFF460 /* CustomLogInViewController.swift in Sources */,
+				E79E66251B7D588800CFF460 /* LogInViewController.swift in Sources */,
 				E79E65E61B7D44AC00CFF460 /* MainViewController.swift in Sources */,
-				E79E66271B7D589A00CFF460 /* CustomSignUpViewController.swift in Sources */,
+				E79E66271B7D589A00CFF460 /* SignUpViewController.swift in Sources */,
 				E79E65E41B7D44AC00CFF460 /* AppDelegate.swift in Sources */,
+				E79E66291B7E16B100CFF460 /* TimeZones.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

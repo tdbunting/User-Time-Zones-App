@@ -10,15 +10,23 @@ import UIKit
 import Parse
 
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var userCurrentTimeZoneLabel: UILabel!
+    
+    @IBOutlet weak var timeZonePickerViewContainer: UIView!
+    
+    @IBOutlet weak var timeZonePicker: UIPickerView!
     
     override func viewDidLoad() {
         //super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.userCurrentTimeZoneLabel.text = localTimeZoneName()
+        getTimeZoneFromParse()
+        
+        self.timeZonePickerViewContainer.hidden = true
+        self.timeZonePicker.delegate = self
+        self.timeZonePicker.dataSource = self
         
     }
     
@@ -40,6 +48,18 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: Functions
+    
+    
+    
+    //Retreives the current users time zone (used when view loads)
+    func getTimeZoneFromParse() -> String! {
+        var timeZoneFromParse = PFUser.currentUser()!["timeZone"] as? String
+        
+        self.userCurrentTimeZoneLabel.text = timeZoneFromParse
+        
+        return timeZoneFromParse
+    }
     
     
     
@@ -51,6 +71,34 @@ class MainViewController: UIViewController {
         self.performSegueWithIdentifier("login", sender: self)
     }
     
+    //Brings up picker view container
+    @IBAction func changeTimeZoneButton(sender: AnyObject) {
+        
+        self.timeZonePickerViewContainer.hidden = false
+        
+    }
+    
+    //Updates user timezone with selection from picker and hides picker
+    @IBAction func updateUserTimeZone(sender: AnyObject) {
+        
+        let newTimeZone = userCurrentTimeZoneLabel.text
+        let user = PFUser.currentUser()
+        user?.setObject(newTimeZone!, forKey: "timeZone")
+        user?.saveInBackgroundWithBlock {(succeeded, error) -> Void in
+            if succeeded {
+                //alert succeed
+                var alert = UIAlertView(title: "Update Succeeded", message: "Your Time Zone Has Been Updated", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }else {
+                //alert failed
+                var alert = UIAlertView(title: "Error", message: "\(error)", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        }
+        
+        self.timeZonePickerViewContainer.hidden = true
+        
+    }
     
     
     
@@ -62,6 +110,58 @@ class MainViewController: UIViewController {
     }
     
     
+    
+    //MARK: Time Zone Picker
+    
+    //function to remove duplicate time zone areas
+    func uniq<S : SequenceType, T : Hashable where S.Generator.Element == T>(source: S) -> [T] {
+        var buffer = [T]()
+        var added = Set<T>()
+        for elem in source {
+            if !added.contains(elem) {
+                buffer.append(elem)
+                added.insert(elem)
+            }
+        }
+        return buffer
+    }
+    
+    //grabs dictionary of all time zone abreviations
+    func timeZoneDictionary() -> [String:String] {
+        return NSTimeZone.abbreviationDictionary() as! [String:String]
+    }
+    
+    //create new array out of values of time zone dictionary and sort the values alphabetically
+    func timeZoneNamesArray() -> [String] {
+        
+        var tzArray: [String] = timeZoneDictionary().values.array
+        var uniqueTzValues = uniq(tzArray)
+        return sorted(uniqueTzValues)
+    }
+    
+    //Picker Functions
+    //set number of columns for picker
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //set number of rows for picker from the timeZonesArray
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return timeZoneNamesArray().count
+    }
+    
+    //set the value of each row of picker from the timeZonesArray
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        
+        return timeZoneNamesArray()[row]
+    }
+    
+    //set the chosen row to the new value in label
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        userCurrentTimeZoneLabel.text = timeZoneNamesArray()[row]
+        
+    }
+    
 }
-
-
