@@ -131,6 +131,12 @@ class CustomSignUpViewController: UIViewController {
         }
     }
     
+    @IBAction func cancelButton(sender: AnyObject){
+        
+        self.performSegueWithIdentifier("custom", sender: self)
+        
+    }
+    
     @IBAction func resignKeyboard(sender: AnyObject) {
         sender.resignFirstResponder()
     }
