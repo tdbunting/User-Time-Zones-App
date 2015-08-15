@@ -107,6 +107,7 @@ class SignUpViewController: UIViewController {
             newUser.email = email
             newUser["firstName"] = firstName
             newUser["lastName"] = lastName
+            newUser["displayName"] = firstName + " " + lastName
             newUser["timeZone"] = localTimeZone()
             
             newUser.signUpInBackgroundWithBlock({ (succeed, error) -> Void in

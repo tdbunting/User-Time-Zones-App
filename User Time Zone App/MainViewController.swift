@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 
-class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var userCurrentTimeZoneLabel: UILabel!
     
@@ -18,17 +18,34 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     @IBOutlet weak var timeZonePicker: UIPickerView!
     
+    @IBOutlet weak var userTableView: UITableView!
+    
+    var allTimeZoneUsersDict = [String :[String]]()
+    
+    var activeTimeZones = [String]()
+    
+    var usersInTimeZone = [String]()
+    
+    var clock = TimeDisplay()
+    
+    var timer: NSTimer?
+    
     override func viewDidLoad() {
-        //super.viewDidLoad()
+        super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        getTimeZoneFromParse()
+        
+        getCurrentUserTimeZoneFromParse()
+        queryDataFromParse()
         
         self.timeZonePickerViewContainer.hidden = true
         self.timeZonePicker.delegate = self
         self.timeZonePicker.dataSource = self
         
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
+        
     }
+    
     
     override func viewDidAppear(animated: Bool) {
         
@@ -48,17 +65,41 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
     //MARK: Functions
     
-    
-    
     //Retreives the current users time zone (used when view loads)
-    func getTimeZoneFromParse() -> String! {
+    func getCurrentUserTimeZoneFromParse() -> String! {
+        
+        if PFUser.currentUser() == nil {
+            return nil
+        }
         var timeZoneFromParse = PFUser.currentUser()!["timeZone"] as? String
         
         self.userCurrentTimeZoneLabel.text = timeZoneFromParse
         
         return timeZoneFromParse
+    }
+    
+    //updates table view
+    func updateTableView(){
+        
+        self.userTableView.reloadData()
+        
+    }
+    
+    //function to remove duplicate items from array
+    func uniq<S : SequenceType, T : Hashable where S.Generator.Element == T>(source: S) -> [T] {
+        var buffer = [T]()
+        var added = Set<T>()
+        for elem in source {
+            if !added.contains(elem) {
+                buffer.append(elem)
+                added.insert(elem)
+            }
+        }
+        return buffer
     }
     
     
@@ -76,9 +117,19 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         self.timeZonePickerViewContainer.hidden = false
         
+        
     }
     
-    //Updates user timezone with selection from picker and hides picker
+    
+    @IBAction func cancelChangeTimeZoneButton(sender: UIButton) {
+        
+        getCurrentUserTimeZoneFromParse()
+        self.timeZonePickerViewContainer.hidden = true
+        
+    }
+    
+    
+    //Updates user timezone with selection from picker and hides picker on exit
     @IBAction func updateUserTimeZone(sender: AnyObject) {
         
         let newTimeZone = userCurrentTimeZoneLabel.text
@@ -89,6 +140,11 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                 //alert succeed
                 var alert = UIAlertView(title: "Update Succeeded", message: "Your Time Zone Has Been Updated", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
+                
+                /**reload UITableView**/
+                //self.userTableView.reloadData()
+                self.queryDataFromParse()
+                
             }else {
                 //alert failed
                 var alert = UIAlertView(title: "Error", message: "\(error)", delegate: self, cancelButtonTitle: "OK")
@@ -112,19 +168,6 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     //MARK: Time Zone Picker
-    
-    //function to remove duplicate time zone areas
-    func uniq<S : SequenceType, T : Hashable where S.Generator.Element == T>(source: S) -> [T] {
-        var buffer = [T]()
-        var added = Set<T>()
-        for elem in source {
-            if !added.contains(elem) {
-                buffer.append(elem)
-                added.insert(elem)
-            }
-        }
-        return buffer
-    }
     
     //grabs dictionary of all time zone abreviations
     func timeZoneDictionary() -> [String:String] {
@@ -163,5 +206,99 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         userCurrentTimeZoneLabel.text = timeZoneNamesArray()[row]
         
     }
+    
+    
+    
+    //MARK: Table View Functions
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+        
+        let dictionaryKeys = self.allTimeZoneUsersDict.keys.array
+        
+        return dictionaryKeys.count
+        
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let singleCellHeader: TimeZoneCell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! TimeZoneCell
+        
+        let singleCellUser: TimeZoneCell = tableView.dequeueReusableCellWithIdentifier("userCell") as! TimeZoneCell
+        
+        let timeZoneFromDictionary = self.allTimeZoneUsersDict.keys.array
+        
+        let userFromDictionary = self.allTimeZoneUsersDict.values.array
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.timeStyle = .ShortStyle
+        timeFormatter.timeZone = NSTimeZone(name: timeZoneFromDictionary[indexPath.row])
+        
+        
+        var formattedTime = timeFormatter.stringFromDate(clock.currentTime)
+        
+        singleCellHeader.timeInTimeZoneLabel.text = formattedTime
+        
+        singleCellHeader.timeZoneHeaderLabel.text = timeZoneFromDictionary[indexPath.row]
+        
+        
+        
+        return singleCellHeader
+    }
+
+    
+    //MARK: Query Functions
+    
+    func queryDataFromParse() {
+        
+        self.allTimeZoneUsersDict = [String:[String]]()
+        
+        var query = PFQuery(className: "_User")
+        
+        query.orderByDescending("timeZone")
+        
+        query.findObjectsInBackgroundWithBlock({
+            (object, error) -> Void in
+            
+            if error == nil {
+                //self.allTimeZoneUsersDict = [String:[String]]()
+                for item in object! {
+                    
+                    let name = item["displayName"] as! String
+                    let timeZone = item["timeZone"]as! String
+                    
+                    //if time zone key already exists, copy array, append new name and add new array to dictionary
+                    if self.allTimeZoneUsersDict .has(timeZone){
+                        
+                        var oldArray = self.allTimeZoneUsersDict[timeZone]!
+                        
+                        oldArray.append(name)
+                        
+                        self.allTimeZoneUsersDict[timeZone] = oldArray
+                    
+                    //else add element to dictionary
+                    }else{
+                        
+                        self.allTimeZoneUsersDict[timeZone] = [name]
+                        
+                    }
+                }
+                
+                println("\(self.allTimeZoneUsersDict.keys.array.count) active Time Zones")
+                var flattened = self.allTimeZoneUsersDict.values.array.reduce([], combine: +)
+                println("\(flattened.count) active Users")
+                println("\(self.allTimeZoneUsersDict)")
+                
+                /**reload the table**/
+                self.updateTableView()
+                
+            }else {
+                
+                NSLog("Error: %@ $@", error!, error!.userInfo!)
+            }
+            
+        })
+    }
+    
+    
     
 }
