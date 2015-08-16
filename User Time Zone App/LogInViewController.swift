@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
                     
                 }else {
                     
-                    var alert = UIAlertView(title: "Error", message: "\(error)", delegate: self, cancelButtonTitle: "OK")
+                    var alert = UIAlertView(title: "Error", message: "Invalid Username or Password. \n Don't have a login? Sign Up!", delegate: self, cancelButtonTitle: "OK")
                     alert.show()
                 }
             })

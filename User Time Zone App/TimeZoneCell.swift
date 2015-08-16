@@ -42,7 +42,8 @@ class TimeZoneUserCell: UITableViewCell {
     @IBOutlet weak var userInTimeZoneLabel: UILabel!
     
     
-    @IBOutlet weak var userInitialAvatarView: UIView!
+    @IBOutlet weak var userInitialAvatar: UserAvatar!
+    
     
     
     override func awakeFromNib() {

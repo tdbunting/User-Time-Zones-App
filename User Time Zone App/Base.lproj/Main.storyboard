@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MOu-W8-2gu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -271,33 +270,36 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaE-dA-UvW">
-                                            <rect key="frame" x="75" y="15" width="195" height="20.5"/>
+                                            <rect key="frame" x="80" y="15" width="190" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vp-dW-Ya8">
-                                            <rect key="frame" x="21" y="7" width="35" height="35"/>
-                                            <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngC-EH-qiE" customClass="UserAvatar" customModule="User_Time_Zone_App" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="5" width="40" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="Ei7-LQ-Vup"/>
-                                                <constraint firstAttribute="height" constant="35" id="wQ4-6N-TWc"/>
+                                                <constraint firstAttribute="height" constant="40" id="10N-kg-svq"/>
+                                                <constraint firstAttribute="width" constant="40" id="j0v-5d-Bba"/>
                                             </constraints>
-                                        </view>
+                                            <state key="normal" title="TB">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="DaE-dA-UvW" secondAttribute="centerY" id="8Qr-zo-rqY"/>
-                                        <constraint firstItem="DaE-dA-UvW" firstAttribute="leading" secondItem="0vp-dW-Ya8" secondAttribute="trailing" constant="19" id="RWf-z5-stK"/>
-                                        <constraint firstItem="0vp-dW-Ya8" firstAttribute="leading" secondItem="CDO-ZW-Jpt" secondAttribute="leading" constant="21" id="oHi-sz-FdP"/>
-                                        <constraint firstAttribute="centerY" secondItem="0vp-dW-Ya8" secondAttribute="centerY" id="pyD-v4-xQv"/>
-                                        <constraint firstAttribute="trailing" secondItem="DaE-dA-UvW" secondAttribute="trailing" constant="30" id="uF8-Ea-tfl"/>
+                                        <constraint firstItem="DaE-dA-UvW" firstAttribute="leading" secondItem="ngC-EH-qiE" secondAttribute="trailing" constant="12" id="JRU-rY-KSc"/>
+                                        <constraint firstAttribute="centerY" secondItem="ngC-EH-qiE" secondAttribute="centerY" id="ZdO-qG-FYa"/>
+                                        <constraint firstAttribute="centerY" secondItem="DaE-dA-UvW" secondAttribute="centerY" id="ok9-mD-hfL"/>
+                                        <constraint firstItem="ngC-EH-qiE" firstAttribute="leading" secondItem="CDO-ZW-Jpt" secondAttribute="leadingMargin" constant="20" id="qgf-ct-EGX"/>
+                                        <constraint firstAttribute="trailing" secondItem="DaE-dA-UvW" secondAttribute="trailing" constant="30" id="zhC-1v-LgU"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="userInTimeZoneLabel" destination="DaE-dA-UvW" id="QVS-Hi-tU4"/>
-                                    <outlet property="userInitialAvatarView" destination="0vp-dW-Ya8" id="wJ7-wD-tyr"/>
+                                    <outlet property="userInitialAvatar" destination="ngC-EH-qiE" id="fsK-sH-gbR"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -318,7 +320,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eG-De-i8z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="962.5"/>
+            <point key="canvasLocation" x="377" y="608"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ENI-jg-acp">
@@ -424,7 +426,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="hbV-7R-RgF" secondAttribute="trailing" constant="5" id="A8g-JS-i7z"/>
                             <constraint firstAttribute="centerY" secondItem="hbV-7R-RgF" secondAttribute="centerY" id="n5j-ya-U9W"/>
@@ -590,7 +592,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kcL-kh-Bpn" secondAttribute="trailing" constant="10" id="NBu-Ta-Qwb"/>
                             <constraint firstItem="kcL-kh-Bpn" firstAttribute="leading" secondItem="CNb-Hs-3FG" secondAttribute="leading" constant="10" id="UMo-zl-z76"/>

@@ -82,7 +82,6 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        //var sectionTitle: String = sectionTimeZone[indexPath.section]
         
         let singleCellUser: TimeZoneUserCell = tableView.dequeueReusableCellWithIdentifier("userCell") as! TimeZoneUserCell
         
@@ -91,7 +90,14 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         var secTitles = allTimeZoneUsersDict[sectionTitles]!
         var userNames = secTitles[indexPath.row]
         
-            
+        
+        var initials = convertFullNameToInitials(userNames)
+        
+        println(initials)
+        
+        
+        singleCellUser.userInitialAvatar.setTitle(initials, forState: .Normal)
+        
         singleCellUser.userInTimeZoneLabel.text = userNames
             
         return singleCellUser
@@ -187,5 +193,19 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         return formattedTime
     }
    
+    func convertFullNameToInitials(fullName: String)-> String {
+        
+        var fullNameArr = fullName.componentsSeparatedByString(" ")
+        var firstName = fullNameArr[0] as String
+        var lastName = fullNameArr[1] as String
+        var firstInitial = firstChar(firstName)
+        var lastInitial = firstChar(lastName)
+        var initials = firstInitial + lastInitial
+        
+        return initials
+    }
     
+    func firstChar(str:String) -> String {
+        return String(Array(str)[0])
+    }
 }

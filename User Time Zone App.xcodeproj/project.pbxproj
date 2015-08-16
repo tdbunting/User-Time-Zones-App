@@ -33,6 +33,8 @@
 		E79E66271B7D589A00CFF460 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66261B7D589A00CFF460 /* SignUpViewController.swift */; };
 		E7C47CCF1B803C030007C490 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C47CCE1B803C030007C490 /* ParseUI.framework */; };
 		E7C47CD11B809FEE0007C490 /* UserInitialsAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C47CD01B809FEE0007C490 /* UserInitialsAvatar.swift */; };
+		E7C47CD31B80E8030007C490 /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C47CD21B80E8030007C490 /* UserAvatar.swift */; };
+		E7C47CD51B80F06D0007C490 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C47CD41B80F06D0007C490 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		E79E662A1B7E19EE00CFF460 /* ParseTimeZoneTests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ParseTimeZoneTests.playground; sourceTree = "<group>"; };
 		E7C47CCE1B803C030007C490 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		E7C47CD01B809FEE0007C490 /* UserInitialsAvatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInitialsAvatar.swift; sourceTree = "<group>"; };
+		E7C47CD21B80E8030007C490 /* UserAvatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
+		E7C47CD41B80F06D0007C490 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +144,7 @@
 				E70557A71B7FEB7800AA9B44 /* UserTableViewController.swift */,
 				E70557A91B802B1800AA9B44 /* Dictionary Tests.playground */,
 				E79E65E71B7D44AC00CFF460 /* Main.storyboard */,
-				E705579D1B7F152100AA9B44 /* DictionaryExtension.swift */,
+				E7C47CD21B80E8030007C490 /* UserAvatar.swift */,
 				E705579B1B7EF40C00AA9B44 /* TimeZoneCell.swift */,
 				E705579F1B7F3D1200AA9B44 /* TimeDisplay.swift */,
 				E79E66241B7D588800CFF460 /* LogInViewController.swift */,
@@ -155,6 +159,8 @@
 		E79E65E11B7D44AC00CFF460 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E705579D1B7F152100AA9B44 /* DictionaryExtension.swift */,
+				E7C47CD41B80F06D0007C490 /* StringExtension.swift */,
 				E79E65E21B7D44AC00CFF460 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -300,11 +306,13 @@
 				E79E66251B7D588800CFF460 /* LogInViewController.swift in Sources */,
 				E79E65E61B7D44AC00CFF460 /* MainViewController.swift in Sources */,
 				E705579C1B7EF40C00AA9B44 /* TimeZoneCell.swift in Sources */,
+				E7C47CD31B80E8030007C490 /* UserAvatar.swift in Sources */,
 				E7C47CD11B809FEE0007C490 /* UserInitialsAvatar.swift in Sources */,
 				E70557A01B7F3D1200AA9B44 /* TimeDisplay.swift in Sources */,
 				E705579E1B7F152100AA9B44 /* DictionaryExtension.swift in Sources */,
 				E79E66271B7D589A00CFF460 /* SignUpViewController.swift in Sources */,
 				E70557A81B7FEB7800AA9B44 /* UserTableViewController.swift in Sources */,
+				E7C47CD51B80F06D0007C490 /* StringExtension.swift in Sources */,
 				E79E65E41B7D44AC00CFF460 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
