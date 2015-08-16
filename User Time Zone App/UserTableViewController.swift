@@ -9,11 +9,14 @@
 import UIKit
 import Parse
 
+
+
 class UserTableViewController: UITableViewController, UITableViewDelegate {
     
         
     @IBOutlet weak var userTableView: UITableView!
 
+    
     var allTimeZoneUsersDict = [String : [String]]()
     
     var activeTimeZones = [String]()
@@ -37,7 +40,7 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         
         clockTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
         
-        queryTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "queryDataFromParse", userInfo: nil, repeats: true)
+        queryTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "queryDataFromParse", userInfo: nil, repeats: true)
     
 
     }
@@ -50,6 +53,9 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
     
     
     //MARK: Table View Functions
+    
+    
+    
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sectionTimeZone.count
@@ -119,8 +125,6 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         
         clockTimer?.invalidate()
         
-        //self.allTimeZoneUsersDict = [String:[String]]()
-        
         var query = PFQuery(className: "_User")
         
         query.orderByDescending("timeZone")
@@ -182,6 +186,7 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         self.userTableView.reloadData()
         
     }
+    
     
     func timeZoneFormatter(timeZone: String) -> String{
         

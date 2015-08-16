@@ -10,8 +10,11 @@ import UIKit
 import Parse
 
 
+
+
 class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    
     
     @IBOutlet weak var userCurrentTimeZoneLabel: UILabel!
     
@@ -72,6 +75,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         return timeZoneFromParse
     }
     
+
     
     //function to remove duplicate items from array
     func uniq<S : SequenceType, T : Hashable where S.Generator.Element == T>(source: S) -> [T] {
@@ -134,6 +138,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                 alert.show()
             }
         }
+        
         
         self.timeZonePickerViewContainer.hidden = true
         
