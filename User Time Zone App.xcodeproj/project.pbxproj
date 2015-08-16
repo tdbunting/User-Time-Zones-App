@@ -32,7 +32,6 @@
 		E79E66251B7D588800CFF460 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66241B7D588800CFF460 /* LogInViewController.swift */; };
 		E79E66271B7D589A00CFF460 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E66261B7D589A00CFF460 /* SignUpViewController.swift */; };
 		E7C47CCF1B803C030007C490 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C47CCE1B803C030007C490 /* ParseUI.framework */; };
-		E7C47CD11B809FEE0007C490 /* UserInitialsAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C47CD01B809FEE0007C490 /* UserInitialsAvatar.swift */; };
 		E7C47CD31B80E8030007C490 /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C47CD21B80E8030007C490 /* UserAvatar.swift */; };
 		E7C47CD51B80F06D0007C490 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C47CD41B80F06D0007C490 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +51,6 @@
 		E705579D1B7F152100AA9B44 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		E705579F1B7F3D1200AA9B44 /* TimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
 		E70557A71B7FEB7800AA9B44 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
-		E70557A91B802B1800AA9B44 /* Dictionary Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Dictionary Tests.playground"; sourceTree = "<group>"; };
 		E79E65DE1B7D44AC00CFF460 /* User Time Zone App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "User Time Zone App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E79E65E21B7D44AC00CFF460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E79E65E31B7D44AC00CFF460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,9 +75,7 @@
 		E79E661C1B7D4D7300CFF460 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E79E66241B7D588800CFF460 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E79E66261B7D589A00CFF460 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		E79E662A1B7E19EE00CFF460 /* ParseTimeZoneTests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ParseTimeZoneTests.playground; sourceTree = "<group>"; };
 		E7C47CCE1B803C030007C490 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		E7C47CD01B809FEE0007C490 /* UserInitialsAvatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInitialsAvatar.swift; sourceTree = "<group>"; };
 		E7C47CD21B80E8030007C490 /* UserAvatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
 		E7C47CD41B80F06D0007C490 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,12 +133,9 @@
 		E79E65E01B7D44AC00CFF460 /* User Time Zone App */ = {
 			isa = PBXGroup;
 			children = (
-				E7C47CD01B809FEE0007C490 /* UserInitialsAvatar.swift */,
-				E79E662A1B7E19EE00CFF460 /* ParseTimeZoneTests.playground */,
 				E79E65E31B7D44AC00CFF460 /* AppDelegate.swift */,
 				E79E65E51B7D44AC00CFF460 /* MainViewController.swift */,
 				E70557A71B7FEB7800AA9B44 /* UserTableViewController.swift */,
-				E70557A91B802B1800AA9B44 /* Dictionary Tests.playground */,
 				E79E65E71B7D44AC00CFF460 /* Main.storyboard */,
 				E7C47CD21B80E8030007C490 /* UserAvatar.swift */,
 				E705579B1B7EF40C00AA9B44 /* TimeZoneCell.swift */,
@@ -307,7 +300,6 @@
 				E79E65E61B7D44AC00CFF460 /* MainViewController.swift in Sources */,
 				E705579C1B7EF40C00AA9B44 /* TimeZoneCell.swift in Sources */,
 				E7C47CD31B80E8030007C490 /* UserAvatar.swift in Sources */,
-				E7C47CD11B809FEE0007C490 /* UserInitialsAvatar.swift in Sources */,
 				E70557A01B7F3D1200AA9B44 /* TimeDisplay.swift in Sources */,
 				E705579E1B7F152100AA9B44 /* DictionaryExtension.swift in Sources */,
 				E79E66271B7D589A00CFF460 /* SignUpViewController.swift in Sources */,
