@@ -22,12 +22,13 @@ class TimeZoneHeaderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        //init code
+        
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated:animated)
-    
+        
+        
         //Configure View for selected State
         
     }
@@ -40,7 +41,8 @@ class TimeZoneUserCell: UITableViewCell {
     
     @IBOutlet weak var userInTimeZoneLabel: UILabel!
     
-    @IBOutlet weak var userImageView: UIImageView!
+    
+    @IBOutlet weak var userInitialAvatarView: UIView!
     
     
     override func awakeFromNib() {

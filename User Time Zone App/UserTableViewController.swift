@@ -11,6 +11,7 @@ import Parse
 
 class UserTableViewController: UITableViewController, UITableViewDelegate {
     
+        
     @IBOutlet weak var userTableView: UITableView!
 
     var allTimeZoneUsersDict = [String : [String]]()
@@ -21,18 +22,24 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
     
     var clock = TimeDisplay()
     
-    var timer: NSTimer?
+    var clockTimer: NSTimer?
+    
+    var queryTimer: NSTimer?
     
     var sectionTimeZone = [String]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         queryDataFromParse()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
+        clockTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
+        
+        queryTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "queryDataFromParse", userInfo: nil, repeats: true)
     
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,52 +64,44 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         let singleCellHeader: TimeZoneHeaderCell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! TimeZoneHeaderCell
 
         var timeZoneTime = timeZoneFormatter(sectionTimeZone[section])
+
         
         singleCellHeader.timeInTimeZoneLabel.text = timeZoneTime
         singleCellHeader.timeZoneHeaderLabel.text = sectionTimeZone[section]
         singleCellHeader.numberOfUsersInTimeZoneLabel.text = "\(self.allTimeZoneUsersDict.values.array[section].count) Users"
         
+        singleCellHeader.separatorInset.top = 0.0
+        singleCellHeader.separatorInset.bottom = 0.0
+        
         return singleCellHeader
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 70
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var sectionTitle: String = sectionTimeZone[indexPath.section]
-        var secTitles = self.allTimeZoneUsersDict[sectionTitle]!
-        var timeZoneTime = timeZoneFormatter(sectionTimeZone[indexPath.row])
+        //var sectionTitle: String = sectionTimeZone[indexPath.section]
         
-        /*
-        println(sectionTitle)
+        let singleCellUser: TimeZoneUserCell = tableView.dequeueReusableCellWithIdentifier("userCell") as! TimeZoneUserCell
         
-        if  {
-            
-            println("section 0 hit")
-            let singleCellHeader: TimeZoneHeaderCell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! TimeZoneHeaderCell
-            
-            singleCellHeader.timeInTimeZoneLabel.text = timeZoneTime
-            singleCellHeader.timeZoneHeaderLabel.text = sectionTimeZone[indexPath.row]
-            singleCellHeader.numberOfUsersInTimeZoneLabel.text = "\(self.allTimeZoneUsersDict.values.array[indexPath.row].count) Users"
-            
-            return singleCellHeader
-            
-        }else {
-           */
-            println("user section hit")
-            
-            let singleCellUser: TimeZoneUserCell = tableView.dequeueReusableCellWithIdentifier("userCell") as! TimeZoneUserCell
-            
-            singleCellUser.userInTimeZoneLabel.text = secTitles[indexPath.row]
-            
-            return singleCellUser
+        var sectionTitles : String =  sectionTimeZone[indexPath.section]
+
+        var secTitles = allTimeZoneUsersDict[sectionTitles]!
+        var userNames = secTitles[indexPath.row]
         
-        //}
-        
+            
+        singleCellUser.userInTimeZoneLabel.text = userNames
+            
+        return singleCellUser
+
     }
     
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 45
+        return 50
         
     }
     
@@ -112,7 +111,9 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
     
     func queryDataFromParse() {
         
-        self.allTimeZoneUsersDict = [String:[String]]()
+        clockTimer?.invalidate()
+        
+        //self.allTimeZoneUsersDict = [String:[String]]()
         
         var query = PFQuery(className: "_User")
         
@@ -122,7 +123,7 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
             (object, error) -> Void in
             
             if error == nil {
-                //self.allTimeZoneUsersDict = [String:[String]]()
+                self.allTimeZoneUsersDict = [String:[String]]()
                 for item in object! {
                     
                     let name = item["displayName"] as! String
@@ -145,22 +146,23 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
                     }
                 }
                 
-                println("\(self.allTimeZoneUsersDict.keys.array.count) active Time Zones")
-                var flattened = self.allTimeZoneUsersDict.values.array.reduce([], combine: +)
-                println("\(flattened.count) active Users")
-                println("\(self.allTimeZoneUsersDict)")
                 
-                self.sectionTimeZone = [String](self.allTimeZoneUsersDict.keys.array)
+                self.sectionTimeZone = [String](self.allTimeZoneUsersDict.keys)
                 
                 
                 /**reload the table**/
                 self.updateTableView()
+                
+                
+                self.clockTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
+                
                 
             }else {
                 
                 NSLog("Error: %@ $@", error!, error!.userInfo!)
             }
             
+            self.sectionTimeZone = [String](self.allTimeZoneUsersDict.keys)
         })
     }
     
