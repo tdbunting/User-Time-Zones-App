@@ -1,0 +1,154 @@
+//
+//  UserTableViewController.swift
+//  User Time Zone App
+//
+//  Created by Tyler Bunting on 8/15/15.
+//  Copyright (c) 2015 Tyler Bunting. All rights reserved.
+//
+
+import UIKit
+import Parse
+
+class UserTableViewController: UITableViewController, UITableViewDelegate {
+    
+    @IBOutlet weak var userTableView: UITableView!
+
+    var allTimeZoneUsersDict = [String : [String]]()
+    
+    var activeTimeZones = [String]()
+    
+    var usersInTimeZone = [String]()
+    
+    var clock = TimeDisplay()
+    
+    var timer: NSTimer?
+    
+    struct TimeZoneObjects {
+        var timeZoneName : String!
+        var usersInTimeZoneName : [String]!
+    }
+    
+    var timeZoneObjectsArray = [TimeZoneObjects]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        queryDataFromParse()
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
+        
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    //MARK: Table View Functions
+    
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+        
+        return timeZoneObjectsArray.count
+        
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let singleCellHeader: TimeZoneCell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! TimeZoneCell
+        
+        let singleCellUser: TimeZoneCell = tableView.dequeueReusableCellWithIdentifier("userCell") as! TimeZoneCell
+        
+        
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.timeStyle = .ShortStyle
+        ///timeFormatter.timeZone = NSTimeZone(name: timeZoneName)
+        var formattedTime = timeFormatter.stringFromDate(clock.currentTime)
+        
+        
+        return singleCellHeader
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if indexPath.section == 0 {
+            return 70
+        }else {
+            return 45
+        }
+        
+    }
+    
+    
+    
+    //MARK: Query Functions
+    
+    func queryDataFromParse() {
+        
+        self.allTimeZoneUsersDict = [String:[String]]()
+        
+        var query = PFQuery(className: "_User")
+        
+        query.orderByDescending("timeZone")
+        
+        query.findObjectsInBackgroundWithBlock({
+            (object, error) -> Void in
+            
+            if error == nil {
+                //self.allTimeZoneUsersDict = [String:[String]]()
+                for item in object! {
+                    
+                    let name = item["displayName"] as! String
+                    let timeZone = item["timeZone"]as! String
+                    
+                    //if time zone key already exists, copy array, append new name and add new array to dictionary
+                    if self.allTimeZoneUsersDict .has(timeZone){
+                        
+                        var oldArray = self.allTimeZoneUsersDict[timeZone]!
+                        
+                        oldArray.append(name)
+                        
+                        self.allTimeZoneUsersDict[timeZone] = oldArray
+                        
+                        //else add element to dictionary
+                    }else{
+                        
+                        self.allTimeZoneUsersDict[timeZone] = [name]
+                        
+                    }
+                }
+                
+                println("\(self.allTimeZoneUsersDict.keys.array.count) active Time Zones")
+                var flattened = self.allTimeZoneUsersDict.values.array.reduce([], combine: +)
+                println("\(flattened.count) active Users")
+                //println("\(self.allTimeZoneUsersDict)")
+                
+                /**reload the table**/
+                self.updateTableView()
+                
+            }else {
+                
+                NSLog("Error: %@ $@", error!, error!.userInfo!)
+            }
+            
+        })
+    }
+    
+    
+    
+    //MARK: Functions
+    
+    //updates table view
+    func updateTableView(){
+        
+        self.userTableView.reloadData()
+        
+    }
+    
+    
+    
+}

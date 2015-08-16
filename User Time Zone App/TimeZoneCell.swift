@@ -8,19 +8,15 @@
 
 import UIKit
 
-class TimeZoneCell: UITableViewCell {
+class TimeZoneHeaderCell: UITableViewCell {
     
-    //@IBOutlet weak var timeZoneHeaderCell: UIView!
+    
     
     @IBOutlet weak var timeZoneHeaderLabel: UILabel!
 
+    @IBOutlet weak var numberOfUsersInTimeZoneLabel: UILabel!
+    
     @IBOutlet weak var timeInTimeZoneLabel: UILabel!
-    
-    //@IBOutlet weak var userInTimeZoneCell: UIView!
-    
-    @IBOutlet weak var userInTimeZoneLabel: UILabel!
-    
-    @IBOutlet weak var userImageView: UIImageView!
     
     
     override func awakeFromNib() {
@@ -37,4 +33,28 @@ class TimeZoneCell: UITableViewCell {
     }
 
 
+}
+
+class TimeZoneUserCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var userInTimeZoneLabel: UILabel!
+    
+    @IBOutlet weak var userImageView: UIImageView!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        //init code
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated:animated)
+        
+        //Configure View for selected State
+        
+    }
+    
+    
 }
