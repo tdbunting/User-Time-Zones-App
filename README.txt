@@ -1,0 +1,1 @@
+This is an iOS app designed to help remote teams know the time zone in one anothers locations. It was built on SWIFT 1.x and used the Parse.io api.
