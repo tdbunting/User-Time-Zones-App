@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>DE49C95F-045E-45EB-8340-026EE59B8316</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>User Time Zone App</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>319EBDE5908E87FB1E87325BD6DF2C815F82548C</key>
 		<string>bitbucket.org:tdbunting91/user-time-zones.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>User Time Zone App.xcodeproj/project.xcworkspace</string>
+	<string>User Time Zone App.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>319EBDE5908E87FB1E87325BD6DF2C815F82548C</key>

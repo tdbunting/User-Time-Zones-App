@@ -111,7 +111,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     @IBAction func cancelChangeTimeZoneButton(sender: UIButton) {
         
-        updateUserTimeZone(sender)
+        getCurrentUserTimeZoneFromParse() 
         self.timeZonePickerViewContainer.hidden = true
         
     }

@@ -240,6 +240,7 @@
 		E79E65D61B7D44AC00CFF460 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Tyler Bunting";
 				TargetAttributes = {

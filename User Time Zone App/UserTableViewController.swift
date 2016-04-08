@@ -29,8 +29,6 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
     
     var queryTimer: NSTimer?
     
-    var sectionTimeZone = [String]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +52,8 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
     
     //MARK: Table View Functions
     
-    
-    
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sectionTimeZone.count
+        return allTimeZoneUsersDict.keys.array.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,11 +64,11 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let singleCellHeader: TimeZoneHeaderCell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! TimeZoneHeaderCell
 
-        var timeZoneTime = timeZoneFormatter(sectionTimeZone[section])
+        var timeZoneTime = timeZoneFormatter(allTimeZoneUsersDict.keys.array[section])
 
         
         singleCellHeader.timeInTimeZoneLabel.text = timeZoneTime
-        singleCellHeader.timeZoneHeaderLabel.text = sectionTimeZone[section]
+        singleCellHeader.timeZoneHeaderLabel.text = allTimeZoneUsersDict.keys.array[section]
         singleCellHeader.numberOfUsersInTimeZoneLabel.text = "\(self.allTimeZoneUsersDict.values.array[section].count) Users"
         
         singleCellHeader.separatorInset.top = 0.0
@@ -91,15 +86,13 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         
         let singleCellUser: TimeZoneUserCell = tableView.dequeueReusableCellWithIdentifier("userCell") as! TimeZoneUserCell
         
-        var sectionTitles : String =  sectionTimeZone[indexPath.section]
+        var sectionTitles : String =  allTimeZoneUsersDict.keys.array[indexPath.section]
 
         var secTitles = allTimeZoneUsersDict[sectionTitles]!
         var userNames = secTitles[indexPath.row]
         
         
         var initials = convertFullNameToInitials(userNames)
-        
-        println(initials)
         
         
         singleCellUser.userInitialAvatar.setTitle(initials, forState: .Normal)
@@ -156,23 +149,17 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
                     }
                 }
                 
-                
-                self.sectionTimeZone = [String](self.allTimeZoneUsersDict.keys)
-                
-                
                 /**reload the table**/
                 self.updateTableView()
                 
                 
                 self.clockTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
                 
-                
             }else {
                 
                 NSLog("Error: %@ $@", error!, error!.userInfo!)
             }
             
-            self.sectionTimeZone = [String](self.allTimeZoneUsersDict.keys)
         })
     }
     
@@ -203,8 +190,8 @@ class UserTableViewController: UITableViewController, UITableViewDelegate {
         var fullNameArr = fullName.componentsSeparatedByString(" ")
         var firstName = fullNameArr[0] as String
         var lastName = fullNameArr[1] as String
-        var firstInitial = firstChar(firstName)
-        var lastInitial = firstChar(lastName)
+        var firstInitial = firstChar(firstName).uppercaseString
+        var lastInitial = firstChar(lastName).uppercaseString
         var initials = firstInitial + lastInitial
         
         return initials
